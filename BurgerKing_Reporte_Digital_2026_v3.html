@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burger King · Reporte Pauta Digital 2026 — XIY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@400;500&family=Barlow+Condensed:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1a1208;
+  --bg2:#221a0a;
+  --bg3:#2a2010;
+  --bg4:#362b14;
+  --brd:rgba(255,200,50,0.10);
+  --brd2:rgba(255,200,50,0.20);
+  --txt:#fff8ee;
+  --txt2:#d4c9a8;
+  --txt3:#8a7a52;
+  --acc:#d62300;
+  --acc-soft:#ff6040;
+  --ora:#ff7e20;
+  --gold:#f5a623;
+  --gold-soft:rgba(245,166,35,0.15);
+  --grn:#7dc67a;
+  --blue:#7ab8f5;
+  --cr:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ─── HEADER ─── */
+.hdr{
+  position:fixed;top:0;left:0;right:0;height:54px;
+  background:rgba(26,18,8,0.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--brd);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;z-index:100;
+}
+.hdr-l{display:flex;align-items:center;gap:16px;}
+.bk-logo{display:flex;align-items:center;gap:10px;}
+.bk-icon{width:32px;height:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--ora);border-radius:8px;padding:3px;}
+.bk-bun-top{width:22px;height:6px;background:#d62300;border-radius:10px 10px 0 0;margin-bottom:2px;}
+.bk-meat{width:22px;height:4px;background:#7a3b00;border-radius:2px;margin-bottom:2px;}
+.bk-bun-bot{width:22px;height:5px;background:#d62300;border-radius:0 0 8px 8px;}
+.bk-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;letter-spacing:0.5px;color:var(--ora);text-transform:uppercase;}
+.sep{width:1px;height:20px;background:var(--brd2);}
+.hdr-x{font-family:'DM Mono',monospace;font-size:12px;color:var(--txt3);}
+.la{font-size:13px;font-weight:500;letter-spacing:1px;color:var(--txt);}
+.hdr-meta{font-size:11px;color:var(--txt3);font-family:'DM Mono',monospace;}
+.hdr-r{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--txt3);}
+.hdr-r .tagline{font-family:'DM Mono',monospace;color:var(--gold);font-weight:500;letter-spacing:0.05em;}
+/* XIY logo */
+.xiy-mark{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;letter-spacing:2px;color:var(--txt);opacity:0.85;}
+
+/* ─── DECK ─── */
+.deck{position:fixed;top:54px;left:0;right:0;bottom:60px;overflow:hidden;}
+.slide{position:absolute;inset:0;padding:44px 68px 28px;overflow-y:auto;display:none;}
+.slide.on{display:block;animation:slidein .42s cubic-bezier(.2,.8,.25,1);}
+@keyframes slidein{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.slide.on .slide-label,.slide.on h1,.slide.on h2,.slide.on .lead,.slide.on .stagger>*{
+  animation:fadeup .5s cubic-bezier(.2,.8,.25,1) backwards;
+}
+.slide.on h1,.slide.on h2{animation-delay:.05s;}
+.slide.on .lead{animation-delay:.12s;}
+.slide.on .stagger>*:nth-child(1){animation-delay:.18s;}
+.slide.on .stagger>*:nth-child(2){animation-delay:.25s;}
+.slide.on .stagger>*:nth-child(3){animation-delay:.32s;}
+.slide.on .stagger>*:nth-child(4){animation-delay:.39s;}
+.slide.on .stagger>*:nth-child(5){animation-delay:.46s;}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+.slide-inner{max-width:1280px;margin:0 auto;}
+
+/* ─── NAV ─── */
+.nav{
+  position:fixed;bottom:0;left:0;right:0;height:60px;
+  background:rgba(26,18,8,0.94);backdrop-filter:blur(10px);
+  border-top:1px solid var(--brd);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;z-index:100;
+}
+.nav-btn{
+  background:transparent;color:var(--txt2);border:1px solid var(--brd2);
+  border-radius:8px;padding:8px 18px;font-family:'DM Sans',sans-serif;font-size:12px;
+  cursor:pointer;transition:all .15s;letter-spacing:0.02em;
+}
+.nav-btn:hover:not(:disabled){background:var(--bg4);color:var(--txt);border-color:var(--ora);}
+.nav-btn:disabled{opacity:0.22;cursor:not-allowed;}
+.dots{display:flex;gap:7px;align-items:center;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--bg4);cursor:pointer;transition:all .18s;border:none;padding:0;}
+.dot.on{background:var(--ora);width:24px;border-radius:3px;}
+.dot:hover:not(.on){background:var(--txt3);}
+.counter{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em;}
+
+/* ─── TYPOGRAPHY ─── */
+.slide-label{
+  display:inline-block;font-size:10px;font-weight:500;
+  color:var(--ora);letter-spacing:0.18em;text-transform:uppercase;
+  margin-bottom:16px;font-family:'DM Mono',monospace;
+  padding:4px 10px;border:1px solid rgba(255,126,32,0.3);border-radius:4px;
+  background:rgba(255,126,32,0.07);
+}
+.slide-label.red{color:var(--acc);border-color:rgba(214,35,0,0.3);background:rgba(214,35,0,0.06);}
+.slide-label.gold{color:var(--gold);border-color:rgba(245,166,35,0.3);background:rgba(245,166,35,0.06);}
+.slide h1{font-family:'Barlow Condensed',sans-serif;font-size:54px;font-weight:800;line-height:1;margin-bottom:16px;letter-spacing:-0.01em;text-transform:uppercase;}
+.slide h2{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:700;line-height:1.1;margin-bottom:14px;letter-spacing:0.01em;text-transform:uppercase;}
+.slide h3{font-size:17px;font-weight:500;margin-bottom:10px;}
+.lead{font-size:17px;color:var(--txt2);font-weight:300;line-height:1.55;margin-bottom:24px;max-width:900px;}
+
+/* ─── COVER ─── */
+.cover{display:flex;flex-direction:column;justify-content:center;height:100%;position:relative;overflow:hidden;}
+.cover::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 78% 45%, rgba(255,126,32,0.1) 0%,transparent 60%),
+             radial-gradient(ellipse at 15% 75%, rgba(214,35,0,0.08) 0%,transparent 55%);
+  pointer-events:none;
+}
+.cover .yr{font-family:'DM Mono',monospace;font-size:12px;color:var(--ora);margin-bottom:28px;letter-spacing:0.2em;}
+.cover h1{font-family:'Barlow Condensed',sans-serif;font-size:86px;font-weight:800;line-height:0.92;letter-spacing:-0.01em;margin-bottom:24px;text-transform:uppercase;}
+.cover h1 em{font-style:italic;font-weight:700;color:var(--ora);}
+.cover .sub{font-size:19px;font-weight:300;color:var(--txt2);max-width:680px;line-height:1.45;margin-bottom:52px;}
+.cover .meta{display:flex;align-items:center;gap:20px;font-family:'DM Mono',monospace;font-size:12px;color:var(--txt3);}
+.cover-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,126,32,0.1);border:1px solid rgba(255,126,32,0.3);
+  border-radius:8px;padding:6px 14px;margin-bottom:22px;
+  font-size:12px;font-family:'DM Mono',monospace;color:var(--ora);letter-spacing:0.08em;
+}
+.cover-badge span{font-size:16px;}
+
+/* ─── KPI CARDS ─── */
+.kpig{display:grid;gap:14px;margin-bottom:20px;}
+.k4{grid-template-columns:repeat(4,1fr);}
+.k3{grid-template-columns:repeat(3,1fr);}
+.k2{grid-template-columns:repeat(2,1fr);}
+.kc{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:20px 22px;position:relative;overflow:hidden;}
+.kc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.kc.b::before{background:var(--blue);}
+.kc.g::before{background:var(--grn);}
+.kc.a::before{background:var(--acc-soft);}
+.kc.r::before{background:var(--acc);}
+.kc.o::before{background:var(--ora);}
+.kc.gold::before{background:var(--gold);}
+.kl{font-size:10px;font-weight:500;color:var(--txt3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;font-family:'DM Mono',monospace;}
+.kv{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:700;color:var(--txt);line-height:1;margin-bottom:6px;letter-spacing:-0.01em;}
+.ks{font-size:12px;color:var(--txt3);}
+.kb{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;margin-top:8px;}
+.kb.g{background:rgba(125,198,122,.12);color:var(--grn);}
+.kb.r{background:rgba(214,35,0,.12);color:var(--acc);}
+.kb.o{background:rgba(255,126,32,.12);color:var(--ora);}
+
+/* ─── GENERAL CARDS ─── */
+.cc{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 24px;}
+.ct{font-size:13px;font-weight:500;color:var(--txt);margin-bottom:4px;}
+.cs{font-size:11px;color:var(--txt3);margin-bottom:14px;font-family:'DM Mono',monospace;letter-spacing:0.05em;}
+.cp{font-size:13.5px;color:var(--txt2);line-height:1.65;}
+.cp strong{color:var(--txt);font-weight:500;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
+
+/* ─── HIGHLIGHT BOX ─── */
+.hl{
+  background:linear-gradient(180deg,rgba(255,126,32,0.08) 0%,rgba(255,126,32,0.02) 100%);
+  border:1px solid rgba(255,126,32,0.28);border-radius:var(--cr);padding:18px 22px;
+}
+.hl.red{background:linear-gradient(180deg,rgba(214,35,0,0.08) 0%,rgba(214,35,0,0.02) 100%);border-color:rgba(214,35,0,0.28);}
+.hl.gold{background:linear-gradient(180deg,rgba(245,166,35,0.08) 0%,rgba(245,166,35,0.02) 100%);border-color:rgba(245,166,35,0.28);}
+.hl-l{font-size:10px;font-weight:500;color:var(--ora);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;font-family:'DM Mono',monospace;}
+.hl.red .hl-l{color:var(--acc);}
+.hl.gold .hl-l{color:var(--gold);}
+.hl-t{font-size:16px;font-weight:500;color:var(--txt);line-height:1.4;}
+.hl-t b{color:var(--ora);font-weight:600;}
+.hl.red .hl-t b{color:var(--acc);}
+.hl.gold .hl-t b{color:var(--gold);}
+
+/* ─── TABLE ─── */
+.canal-table{width:100%;border-collapse:collapse;font-size:13px;}
+.canal-table th{
+  text-align:left;font-size:10px;font-weight:500;color:var(--txt3);
+  letter-spacing:0.08em;text-transform:uppercase;padding:11px 14px;
+  border-bottom:1px solid var(--brd);font-family:'DM Mono',monospace;
+}
+.canal-table td{padding:13px 14px;color:var(--txt2);border-bottom:1px solid var(--brd);vertical-align:middle;}
+.canal-table tr:last-child td{border-bottom:none;}
+.canal-table tr:hover td{background:var(--bg4);}
+.canal-table td.bold{font-weight:600;color:var(--txt);font-family:'DM Mono',monospace;}
+.cpb{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;padding:2px 9px;border-radius:5px;}
+.cpb.g{background:rgba(125,198,122,.14);color:var(--grn);}
+.cpb.a{background:rgba(255,96,64,.14);color:var(--acc-soft);}
+.cpb.r{background:rgba(214,35,0,.14);color:var(--acc);}
+.cpb.b{background:rgba(122,184,245,.14);color:var(--blue);}
+.cpb.o{background:rgba(255,126,32,.14);color:var(--ora);}
+.cpb.gold{background:rgba(245,166,35,.14);color:var(--gold);}
+
+/* ─── CHART BARS ─── */
+.bar-chart{display:flex;flex-direction:column;gap:12px;}
+.bar-row{display:flex;align-items:center;gap:12px;}
+.bar-label{font-size:12px;color:var(--txt2);width:140px;flex-shrink:0;text-align:right;}
+.bar-track{flex:1;height:24px;background:var(--bg4);border-radius:4px;overflow:hidden;position:relative;}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;transition:width .6s cubic-bezier(.2,.8,.25,1);}
+.bar-fill span{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:rgba(255,255,255,0.9);}
+.bar-val{font-family:'DM Mono',monospace;font-size:12px;color:var(--txt3);width:80px;flex-shrink:0;}
+
+/* ─── PROMO CARDS ─── */
+.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.promo-card{
+  background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);
+  padding:20px 22px;position:relative;overflow:hidden;
+}
+.promo-card::after{content:'';position:absolute;top:0;left:0;width:100%;height:3px;}
+.pc-ora::after{background:linear-gradient(90deg,var(--ora),rgba(255,126,32,0.3));}
+.pc-red::after{background:linear-gradient(90deg,var(--acc),rgba(214,35,0,0.3));}
+.pc-gold::after{background:linear-gradient(90deg,var(--gold),rgba(245,166,35,0.3));}
+.promo-icon{font-size:28px;margin-bottom:10px;}
+.promo-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.02em;}
+.promo-stat{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;margin-top:12px;}
+.promo-stat.ora{color:var(--ora);}
+.promo-stat.red{color:var(--acc);}
+.promo-stat.gold{color:var(--gold);}
+.promo-stat-label{font-size:11px;color:var(--txt3);margin-top:3px;}
+.promo-desc{font-size:12.5px;color:var(--txt2);line-height:1.6;}
+
+/* ─── DONUT / PIE VISUAL ─── */
+.donut-wrap{display:flex;align-items:center;gap:32px;}
+.donut-legend{display:flex;flex-direction:column;gap:12px;}
+.legend-item{display:flex;align-items:center;gap:10px;}
+.legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.legend-name{font-size:13px;color:var(--txt2);}
+.legend-val{font-family:'DM Mono',monospace;font-size:13px;color:var(--txt);margin-left:auto;padding-left:16px;}
+
+/* ─── TENDENCIAS ─── */
+.trend-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.trend-card{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);padding:22px 24px;}
+.trend-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+.trend-title{font-size:14px;font-weight:500;color:var(--txt);}
+.trend-period{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);}
+.sparkline{width:100%;height:60px;}
+.metric-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--brd);}
+.metric-row:last-child{border-bottom:none;}
+.metric-name{font-size:12.5px;color:var(--txt2);}
+.metric-val{font-family:'DM Mono',monospace;font-size:13px;color:var(--txt);}
+.delta{font-size:11px;padding:1px 7px;border-radius:8px;margin-left:8px;}
+.delta.up{background:rgba(125,198,122,.12);color:var(--grn);}
+.delta.down{background:rgba(214,35,0,.12);color:var(--acc);}
+
+/* ─── INSIGHTS ─── */
+.insight-list{display:flex;flex-direction:column;gap:12px;}
+.insight-item{
+  display:grid;grid-template-columns:40px 1fr;align-items:start;gap:16px;
+  background:var(--bg3);border:1px solid var(--brd);border-radius:var(--cr);
+  padding:18px 22px;
+}
+.insight-num{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--ora);line-height:1;}
+.insight-t{font-size:14px;font-weight:500;margin-bottom:4px;}
+.insight-d{font-size:12.5px;color:var(--txt2);line-height:1.55;}
+
+/* ─── MISC ─── */
+.mb16{margin-bottom:16px;}
+.mb20{margin-bottom:20px;}
+.mt16{margin-top:16px;}
+.section-title{
+  font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.03em;margin-bottom:14px;
+  color:var(--txt);display:flex;align-items:center;gap:10px;
+}
+.section-title::after{content:'';flex:1;height:1px;background:var(--brd2);}
+.platform-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;
+  padding:3px 10px;border-radius:5px;font-weight:500;
+}
+.pb-meta{background:rgba(24,119,242,.15);color:#5b9bf5;}
+.pb-google{background:rgba(255,160,0,.12);color:#ffb020;}
+.pb-tiktok{background:rgba(255,255,255,.08);color:#d0d0d0;}
+
+/* ─── DOUGHNUT SVG ─── */
+svg.pie{overflow:visible;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-l">
+    <div class="bk-logo">
+      <div class="bk-icon">
+        <div class="bk-bun-top"></div>
+        <div class="bk-meat"></div>
+        <div class="bk-bun-bot"></div>
+      </div>
+      <span class="bk-name">Burger King</span>
+    </div>
+    <div class="sep"></div>
+    <span class="hdr-x">REPORTE DIGITAL</span>
+    <div class="sep"></div>
+    <span class="la">Mar–Abr 2026</span>
+  </div>
+  <div class="hdr-r">
+    <span class="tagline">xiy.agency</span>
+    <div class="sep"></div>
+    <span class="xiy-mark">XIY</span>
+  </div>
+</header>
+
+<!-- DECK -->
+<main class="deck" id="deck">
+
+  <!-- SLIDE 0: COVER -->
+  <section class="slide on" id="s0">
+    <div class="slide-inner cover">
+      <div class="cover-badge"><span>👑</span> PAUTA DIGITAL · ECUADOR</div>
+      <div class="yr">MARZO — ABRIL · 2026</div>
+      <h1>Reporte<br><em>Burger King</em></h1>
+      <p class="sub">Análisis de performance de campañas en Google, Meta y TikTok. Resultados generales, mejores promociones, tendencias y oportunidades de optimización.</p>
+      <div class="meta">
+        <span>3 plataformas</span>
+        <span>·</span>
+        <span>$15,635.72 invertidos</span>
+        <span>·</span>
+        <span>60.8M impresiones</span>
+        <span>·</span>
+        <span>Elaborado por XIY</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 1: RESUMEN GENERAL -->
+  <section class="slide" id="s1">
+    <div class="slide-inner">
+      <div class="slide-label">01 — RESUMEN GENERAL</div>
+      <h2>Performance Global</h2>
+      <p class="lead">Inversión de <strong>$15,635.72</strong> generó más de <strong>60.8 millones de impresiones</strong> en dos meses a un CPM promedio de $0.26 — eficiencia muy por encima del mercado.</p>
+
+      <div class="kpig k4 mb20 stagger">
+        <div class="kc o">
+          <div class="kl">Inversión Total</div>
+          <div class="kv">$15,636</div>
+          <div class="ks">Mar + Abr 2026</div>
+        </div>
+        <div class="kc b">
+          <div class="kl">Impresiones</div>
+          <div class="kv">60.8M</div>
+          <div class="ks">En 3 plataformas</div>
+          <div class="kb o">↑ alta cobertura</div>
+        </div>
+        <div class="kc g">
+          <div class="kl">Clicks Totales</div>
+          <div class="kv">192.9K</div>
+          <div class="ks">Google + Meta</div>
+        </div>
+        <div class="kc r">
+          <div class="kl">Video Views</div>
+          <div class="kv">12.5M</div>
+          <div class="ks">TikTok · VTR 97%</div>
+          <div class="kb g">↑ excelente</div>
+        </div>
+      </div>
+
+      <div class="g3 stagger">
+        <div class="cc">
+          <div class="platform-badge pb-meta" style="margin-bottom:10px;">META ADS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:var(--txt);">$12,103.50</div>
+          <div style="font-size:11px;color:var(--txt3);font-family:'DM Mono',monospace;margin-bottom:10px;">77.4% DEL PRESUPUESTO</div>
+          <div class="metric-row"><span class="metric-name">Impresiones</span><span class="metric-val">43.7M</span></div>
+          <div class="metric-row"><span class="metric-name">Clicks</span><span class="metric-val">171,936</span></div>
+          <div class="metric-row"><span class="metric-name">CTR</span><span class="metric-val">0.39%</span></div>
+          <div class="metric-row"><span class="metric-name">CPM</span><span class="metric-val">$0.29</span></div>
+        </div>
+        <div class="cc">
+          <div class="platform-badge pb-tiktok" style="margin-bottom:10px;">TIKTOK ADS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:var(--txt);">$2,252.96</div>
+          <div style="font-size:11px;color:var(--txt3);font-family:'DM Mono',monospace;margin-bottom:10px;">14.4% DEL PRESUPUESTO</div>
+          <div class="metric-row"><span class="metric-name">Impresiones</span><span class="metric-val">12.9M</span></div>
+          <div class="metric-row"><span class="metric-name">Video Views</span><span class="metric-val">12.5M</span></div>
+          <div class="metric-row"><span class="metric-name">VTR</span><span class="metric-val">97.0%</span></div>
+          <div class="metric-row"><span class="metric-name">CPM</span><span class="metric-val">$0.19</span></div>
+        </div>
+        <div class="cc">
+          <div class="platform-badge pb-google" style="margin-bottom:10px;">GOOGLE ADS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:var(--txt);">$1,279.26</div>
+          <div style="font-size:11px;color:var(--txt3);font-family:'DM Mono',monospace;margin-bottom:10px;">8.2% DEL PRESUPUESTO</div>
+          <div class="metric-row"><span class="metric-name">Impresiones</span><span class="metric-val">4.3M</span></div>
+          <div class="metric-row"><span class="metric-name">Clicks</span><span class="metric-val">21,004</span></div>
+          <div class="metric-row"><span class="metric-name">CTR</span><span class="metric-val">0.49%</span></div>
+          <div class="metric-row"><span class="metric-name">CPM</span><span class="metric-val">$0.30</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: DISTRIBUCIÓN DE INVERSIÓN -->
+  <section class="slide" id="s2">
+    <div class="slide-inner">
+      <div class="slide-label">02 — INVERSIÓN</div>
+      <h2>¿A dónde fue el presupuesto?</h2>
+      <p class="lead">Meta concentra la mayor parte del spend por su alcance y versatilidad. TikTok ofrece el <strong>mejor CPM ($0.19)</strong>, haciendo cada dólar más eficiente en video.</p>
+
+      <div class="g2 mb20 stagger">
+        <div class="cc">
+          <div class="ct mb16">Distribución por Plataforma</div>
+          <!-- Visual bar chart -->
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">Meta</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:77.4%;background:linear-gradient(90deg,#5b9bf5,#3b7dd4);">
+                  <span>77.4%</span>
+                </div>
+              </div>
+              <span class="bar-val">$12,104</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">TikTok</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:14.4%;background:linear-gradient(90deg,#d0d0d0,#a0a0a0);">
+                  <span>14.4%</span>
+                </div>
+              </div>
+              <span class="bar-val">$2,253</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Google</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:8.2%;background:linear-gradient(90deg,var(--gold),#d4900a);">
+                  <span>8.2%</span>
+                </div>
+              </div>
+              <span class="bar-val">$1,279</span>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <div class="ct mb16" style="margin-top:8px;">Impresiones por Plataforma</div>
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">Meta</span>
+                <div class="bar-track">
+                  <div class="bar-fill" style="width:71.8%;background:linear-gradient(90deg,#5b9bf5,#3b7dd4);">
+                    <span>71.8%</span>
+                  </div>
+                </div>
+                <span class="bar-val">43.7M</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">TikTok</span>
+                <div class="bar-track">
+                  <div class="bar-fill" style="width:21.1%;background:linear-gradient(90deg,#d0d0d0,#a0a0a0);">
+                    <span>21.1%</span>
+                  </div>
+                </div>
+                <span class="bar-val">12.9M</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">Google</span>
+                <div class="bar-track">
+                  <div class="bar-fill" style="width:7.1%;background:linear-gradient(90deg,var(--gold),#d4900a);">
+                    <span>7.1%</span>
+                  </div>
+                </div>
+                <span class="bar-val">4.3M</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div class="hl gold">
+            <div class="hl-l">🏆 Mayor Eficiencia</div>
+            <div class="hl-t">TikTok logra el <b>CPM más bajo: $0.19</b> con un 97% de tasa de visualización. Cada 1,000 vistas cuestan solo 19 centavos.</div>
+          </div>
+          <div class="hl">
+            <div class="hl-l">📊 Mayor Alcance</div>
+            <div class="hl-t">Meta genera <b>43.7M impresiones</b> y 171,936 clicks reales, siendo el canal de mayor volumen y performance de conversión.</div>
+          </div>
+          <div class="hl red">
+            <div class="hl-l red">🎯 Mejor CTR</div>
+            <div class="hl-t">Google lidera en CTR con <b>0.49%</b>, siendo ideal para captura de demanda activa (usuarios que buscan BK).</div>
+          </div>
+
+          <div class="kpig k3" style="margin-top:4px;">
+            <div class="kc o">
+              <div class="kl">CPM Promedio</div>
+              <div class="kv" style="font-size:28px;">$0.27</div>
+              <div class="ks">Global 3 plataformas</div>
+            </div>
+            <div class="kc g">
+              <div class="kl">CPC Global</div>
+              <div class="kv" style="font-size:28px;">$0.08</div>
+              <div class="ks">Meta + Google</div>
+            </div>
+            <div class="kc b">
+              <div class="kl">CPV TikTok</div>
+              <div class="kv" style="font-size:28px;">$0.0002</div>
+              <div class="ks">Por cada vista</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: MEJORES PROMOS -->
+  <section class="slide" id="s3">
+    <div class="slide-inner">
+      <div class="slide-label red">03 — PROMOCIONES</div>
+      <h2>Las Promos Que Más Rindieron</h2>
+      <p class="lead">De todas las campañas activas, estas promociones destacan por engagement, volumen y eficiencia de costo.</p>
+
+      <div class="promo-grid mb20 stagger">
+        <div class="promo-card pc-red">
+          <div class="promo-icon">🍔</div>
+          <div class="promo-name">Whopper Jueves $2.99</div>
+          <div class="promo-desc">La promo de precio más activa. Activa en Meta y TikTok simultáneamente. CTR superior al promedio con alta intención de compra.</div>
+          <div class="promo-stat red">0.41%</div>
+          <div class="promo-stat-label">CTR Meta · Top 3 de todas las campañas</div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="cpb o">Meta + TikTok</span>
+            <span class="cpb r">Promoción Precio</span>
+          </div>
+        </div>
+
+        <div class="promo-card pc-ora">
+          <div class="promo-icon">🧀</div>
+          <div class="promo-name">Cheese Ring King</div>
+          <div class="promo-desc">Lanzamiento de producto que dominó el período de Febrero-Marzo. Mayor volumen de impresiones de cualquier campaña individual.</div>
+          <div class="promo-stat ora">8.1M</div>
+          <div class="promo-stat-label">Impresiones combinadas Meta + TikTok</div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="cpb b">Lanzamiento</span>
+            <span class="cpb g">CTR 0.63%</span>
+          </div>
+        </div>
+
+        <div class="promo-card pc-gold">
+          <div class="promo-icon">🎂</div>
+          <div class="promo-name">Campaña Cumpleaños</div>
+          <div class="promo-desc">La campaña con el CTR más alto de todo el período. Contenido altamente personalizado que generó engagement excepcional.</div>
+          <div class="promo-stat gold">2.87%</div>
+          <div class="promo-stat-label">CTR más alto · 580K impresiones</div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="cpb gold">CTR #1</span>
+            <span class="cpb o">Personalización</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="g2 stagger">
+        <div class="cc">
+          <div class="ct mb16">Top Promos por CTR (Meta, +500K imp)</div>
+          <table class="canal-table">
+            <thead><tr><th>Promoción</th><th>CTR</th><th>Impresiones</th></tr></thead>
+            <tbody>
+              <tr><td>Cumpleaños</td><td class="bold"><span class="cpb g">2.87%</span></td><td>580K</td></tr>
+              <tr><td>Cheese Ring King</td><td class="bold"><span class="cpb g">0.63%</span></td><td>8.1M</td></tr>
+              <tr><td>Whopper Jueves</td><td class="bold"><span class="cpb o">0.41%</span></td><td>785K</td></tr>
+              <tr><td>Lanzamiento Mandalorian</td><td class="bold"><span class="cpb o">0.39%</span></td><td>1.3M</td></tr>
+              <tr><td>1x2x Lunes/Martes</td><td class="bold"><span class="cpb a">0.31%</span></td><td>2.8M</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cc">
+          <div class="ct mb16">TikTok: Mejor CPV por Campaña</div>
+          <table class="canal-table">
+            <thead><tr><th>Campaña</th><th>CPV /1K</th><th>Video Views</th></tr></thead>
+            <tbody>
+              <tr><td>Dúo + Trío Abril</td><td class="bold"><span class="cpb g">$0.172</span></td><td>377K</td></tr>
+              <tr><td>Cheese Ring King</td><td class="bold"><span class="cpb g">$0.174</span></td><td>3.96M</td></tr>
+              <tr><td>Whopper 2.99 Abril</td><td class="bold"><span class="cpb g">$0.175</span></td><td>857K</td></tr>
+              <tr><td>Lunes y Martes</td><td class="bold"><span class="cpb o">$0.197</span></td><td>1.26M</td></tr>
+              <tr><td>Always On Marzo</td><td class="bold"><span class="cpb o">$0.198</span></td><td>1.33M</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: META PLACEMENTS -->
+  <section class="slide" id="s4">
+    <div class="slide-inner">
+      <div class="slide-label">04 — META ADS</div>
+      <h2>Performance por Placement</h2>
+      <p class="lead">El Feed de Facebook sigue siendo el placement con mayor volumen. Audience Network sorprende con el <strong>CTR más alto (1.96%)</strong>.</p>
+
+      <div class="mb20 stagger">
+        <div class="cc">
+          <div class="ct mb16">Impresiones por Placement (Meta)</div>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label" style="font-size:11px;">FB Feed</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:55%;background:linear-gradient(90deg,#5b9bf5,#3b7dd4);">
+                  <span>53.9%</span>
+                </div>
+              </div>
+              <span class="bar-val">23.5M</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label" style="font-size:11px;">Marketplace</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:14%;background:linear-gradient(90deg,var(--ora),#c85e00);">
+                  <span>13.9%</span>
+                </div>
+              </div>
+              <span class="bar-val">6.1M</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label" style="font-size:11px;">FB Reels</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:9%;background:linear-gradient(90deg,var(--acc),#a01800);">
+                  <span>9.1%</span>
+                </div>
+              </div>
+              <span class="bar-val">4.0M</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label" style="font-size:11px;">IG Stories</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:5%;background:linear-gradient(90deg,#e07dd4,#a040a0);">
+                  <span>4.9%</span>
+                </div>
+              </div>
+              <span class="bar-val">2.2M</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label" style="font-size:11px;">Audience Net.</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:4.7%;background:linear-gradient(90deg,var(--grn),#3a8a40);">
+                  <span>4.7%</span>
+                </div>
+              </div>
+              <span class="bar-val">2.0M</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="g2 stagger">
+        <div class="cc">
+          <div class="ct mb16">CTR por Placement</div>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label" style="font-size:11px;">Audience Net.</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:98%;background:linear-gradient(90deg,var(--grn),#3a8a40);">
+                  <span>1.96%</span>
+                </div>
+              </div>
+              <span class="bar-val" style="color:var(--grn);">★ top</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label" style="font-size:11px;">FB Feed</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:21%;background:linear-gradient(90deg,#5b9bf5,#3b7dd4);">
+                  <span>0.40%</span>
+                </div>
+              </div>
+              <span class="bar-val"></span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label" style="font-size:11px;">FB Reels</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:11%;background:linear-gradient(90deg,var(--acc),#a01800);">
+                  <span>0.21%</span>
+                </div>
+              </div>
+              <span class="bar-val"></span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label" style="font-size:11px;">Marketplace</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:5%;background:linear-gradient(90deg,var(--ora),#c85e00);">
+                  <span>0.10%</span>
+                </div>
+              </div>
+              <span class="bar-val"></span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label" style="font-size:11px;">IG Stories</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:3.6%;background:linear-gradient(90deg,#e07dd4,#a040a0);">
+                  <span>0.07%</span>
+                </div>
+              </div>
+              <span class="bar-val"></span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="hl gold">
+            <div class="hl-l">💡 Hallazgo Clave</div>
+            <div class="hl-t">Audience Network genera el CTR más alto <b>(1.96%)</b> pero solo recibe 4.7% del spend. Existe oportunidad de escalar este placement.</div>
+          </div>
+          <div class="hl">
+            <div class="hl-l">📱 Feed Domina Volumen</div>
+            <div class="hl-t">FB Feed concentra el 53.9% de impresiones y el CTR de <b>0.40%</b> está bien por encima del benchmark de 0.09% global.</div>
+          </div>
+          <div class="hl red">
+            <div class="hl-l">🔴 Oportunidad IG Stories</div>
+            <div class="hl-t">IG Stories tiene el CPM más alto ($0.34) con el CTR más bajo (0.07%). Revisar formatos y creatividades para este placement.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: TENDENCIAS MENSUALES -->
+  <section class="slide" id="s5">
+    <div class="slide-inner">
+      <div class="slide-label gold">05 — TENDENCIAS</div>
+      <h2>Evolución Marzo → Abril</h2>
+      <p class="lead">Abril muestra mejora significativa en eficiencia a pesar de menor inversión — señal de que la estrategia está madurando.</p>
+
+      <div class="g2 mb16 stagger">
+        <div class="cc">
+          <div class="ct mb16">Meta: Marzo vs Abril</div>
+          <table class="canal-table">
+            <thead><tr><th>Métrica</th><th>Marzo</th><th>Abril</th><th>Cambio</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Inversión</td>
+                <td class="bold">$10,668.87</td>
+                <td class="bold">$1,434.63</td>
+                <td><span class="cpb a">−86.6%</span></td>
+              </tr>
+              <tr>
+                <td>Impresiones</td>
+                <td class="bold">36.7M</td>
+                <td class="bold">6.9M</td>
+                <td><span class="cpb a">−81.1%</span></td>
+              </tr>
+              <tr>
+                <td>Clicks</td>
+                <td class="bold">132,595</td>
+                <td class="bold">39,341</td>
+                <td><span class="cpb a">−70.3%</span></td>
+              </tr>
+              <tr>
+                <td>CTR</td>
+                <td class="bold">0.36%</td>
+                <td class="bold">0.57%</td>
+                <td><span class="cpb g">+58% ↑</span></td>
+              </tr>
+              <tr>
+                <td>CPM</td>
+                <td class="bold">$0.29</td>
+                <td class="bold">$0.29</td>
+                <td><span class="cpb o">estable</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cc">
+          <div class="ct mb16">TikTok: Marzo vs Abril</div>
+          <table class="canal-table">
+            <thead><tr><th>Métrica</th><th>Marzo</th><th>Abril</th><th>Cambio</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Inversión</td>
+                <td class="bold">$1,707.92</td>
+                <td class="bold">$545.04</td>
+                <td><span class="cpb a">−68.1%</span></td>
+              </tr>
+              <tr>
+                <td>Impresiones</td>
+                <td class="bold">8.8M</td>
+                <td class="bold">4.0M</td>
+                <td><span class="cpb a">−54.4%</span></td>
+              </tr>
+              <tr>
+                <td>Video Views</td>
+                <td class="bold">8.5M</td>
+                <td class="bold">3.98M</td>
+                <td><span class="cpb a">−53.1%</span></td>
+              </tr>
+              <tr>
+                <td>VTR</td>
+                <td class="bold">96.3%</td>
+                <td class="bold">98.8%</td>
+                <td><span class="cpb g">+2.5pp ↑</span></td>
+              </tr>
+              <tr>
+                <td>CPM</td>
+                <td class="bold">$0.19</td>
+                <td class="bold">$0.19</td>
+                <td><span class="cpb g">estable</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="g3 stagger">
+        <div class="hl gold">
+          <div class="hl-l">📈 Tendencia Positiva CTR</div>
+          <div class="hl-t">Meta CTR mejoró de <b>0.36% → 0.57%</b> en Abril. La audiencia responde mejor con creatividades más optimizadas.</div>
+        </div>
+        <div class="hl">
+          <div class="hl-l">🎬 TikTok Mejora VTR</div>
+          <div class="hl-t">VTR de TikTok sube de <b>96.3% → 98.8%</b>. Los videos cortos con ganchos rápidos están captando más atención completa.</div>
+        </div>
+        <div class="hl red">
+          <div class="hl-l">⚡ Eficiencia vs Volumen</div>
+          <div class="hl-t">Menos inversión en Abril pero <b>mejor performance porcentual</b>. Señal de que optimizar es más rentable que solo escalar spend.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: INSIGHTS Y RECOMENDACIONES -->
+  <section class="slide" id="s6">
+    <div class="slide-inner">
+      <div class="slide-label">06 — INSIGHTS</div>
+      <h2>Lo Que Nos Dicen los Datos</h2>
+      <p class="lead">6 insights accionables extraídos del análisis completo de las campañas Mar–Abr 2026.</p>
+
+      <div class="insight-list stagger">
+        <div class="insight-item">
+          <div class="insight-num">01</div>
+          <div>
+            <div class="insight-t">TikTok es el canal de video más eficiente — CPM $0.19 vs $0.29 de Meta</div>
+            <div class="insight-d">Con un VTR del 97%, prácticamente todos los que ven el video lo ven completo. Para campañas de branding y lanzamiento de producto, TikTok entrega el mayor valor por dólar invertido en video.</div>
+          </div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-num">02</div>
+          <div>
+            <div class="insight-t">Audience Network de Meta tiene el CTR más alto (1.96%) pero recibe solo el 4.7% del budget</div>
+            <div class="insight-d">Este placement está sub-utilizado. Incrementar la inversión en Audience Network podría generar más clicks a menor costo, especialmente para campañas de conversión.</div>
+          </div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-num">03</div>
+          <div>
+            <div class="insight-t">Las promos de precio fijo (Whopper $2.99) superan en CTR a las campañas de branding general</div>
+            <div class="insight-d">Los usuarios responden mejor a una oferta clara y concreta. "WHOPPER JUEVES $2.99" logra 0.41% CTR vs 0.24-0.28% de campañas Always On. El mensaje de valor concreto impulsa la acción.</div>
+          </div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-num">04</div>
+          <div>
+            <div class="insight-t">Campañas personalizadas (cumpleaños) logran CTR 7x superior al promedio</div>
+            <div class="insight-d">La campaña de cumpleaños alcanzó 2.87% CTR — casi 7 veces el promedio de 0.39%. La personalización contextual genera engagement radicalmente superior. Explorar más momentos personales.</div>
+          </div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-num">05</div>
+          <div>
+            <div class="insight-t">El CPM se mantuvo estable a pesar de variaciones de inversión — señal de buen targeting</div>
+            <div class="insight-d">Meta mantuvo CPM de $0.29 en ambos meses, TikTok $0.19. La estabilidad indica que las audiencias están bien definidas y no hay sobreexposición que encarezca los costos.</div>
+          </div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-num">06</div>
+          <div>
+            <div class="insight-t">Google captura intención activa — CTR 0.49% vs 0.39% de Meta con solo $1,279 invertidos</div>
+            <div class="insight-d">Aunque recibe el 8.2% del budget, Google entrega el CTR más alto porque captura usuarios que YA están buscando BK. Aumentar inversión en Google podría incrementar conversiones directas.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: RECOMENDACIONES -->
+  <section class="slide" id="s7">
+    <div class="slide-inner">
+      <div class="slide-label red">07 — RECOMENDACIONES</div>
+      <h2>Próximos Pasos</h2>
+      <p class="lead">Con base en los hallazgos, estas son las acciones prioritarias para maximizar el ROI en los próximos meses.</p>
+
+      <div class="g2 stagger">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="cc">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <span style="font-size:24px;">📈</span>
+              <div class="ct">Escalar TikTok para Branding</div>
+            </div>
+            <div class="cp">Incrementar el presupuesto de TikTok del <strong>14.4% → 20-25%</strong>. El CPM de $0.19 y VTR del 97% hacen que cada dólar adicional genere más vistas completadas que en Meta.</div>
+          </div>
+          <div class="cc">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <span style="font-size:24px;">🎯</span>
+              <div class="ct">Activar Audience Network</div>
+            </div>
+            <div class="cp">Probar incremento de bid en <strong>Audience Network</strong>. Con 1.96% CTR, es el placement más eficiente para conversión. Crear un ad set dedicado con presupuesto propio para testear escalabilidad.</div>
+          </div>
+          <div class="cc">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <span style="font-size:24px;">🔍</span>
+              <div class="ct">Reforzar Google para Conversión</div>
+            </div>
+            <div class="cp">El CTR de <strong>0.49%</strong> de Google indica alta intención. Aumentar inversión en Google Search y PMAX para capturar usuarios en el momento de compra activo, especialmente en días de promo.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="cc">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <span style="font-size:24px;">💰</span>
+              <div class="ct">Más Promos de Precio Fijo</div>
+            </div>
+            <div class="cp">Las campañas con precio concreto (Whopper $2.99, 1x2x) superan en CTR a las de branding. <strong>Mantener al menos 2 promos de precio activas por mes</strong> para sostener el performance.</div>
+          </div>
+          <div class="cc">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <span style="font-size:24px;">🎂</span>
+              <div class="ct">Expandir Campañas Personalizadas</div>
+            </div>
+            <div class="cp">La campaña de Cumpleaños logró <strong>2.87% CTR</strong>. Explorar momentos personales adicionales: aniversario de cliente, día de la madre/padre, temporadas festivas con targeting contextual.</div>
+          </div>
+          <div class="cc">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <span style="font-size:24px;">📉</span>
+              <div class="ct">Optimizar IG Stories</div>
+            </div>
+            <div class="cp">IG Stories tiene el <strong>CPM más alto ($0.34) y CTR más bajo (0.07%)</strong>. Revisar creatividades específicas para formato vertical, agregar CTA claro y probar videos cortos de 6-9 seg en lugar de estáticos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="nav-btn" id="prev" onclick="go(-1)" disabled>← Anterior</button>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <div class="dots" id="dots"></div>
+    <span class="counter" id="counter">1 / 8</span>
+  </div>
+  <button class="nav-btn" id="next" onclick="go(1)">Siguiente →</button>
+</nav>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dotsEl = document.getElementById('dots');
+const counter = document.getElementById('counter');
+let cur = 0;
+
+// Build dots
+slides.forEach((_,i) => {
+  const d = document.createElement('button');
+  d.className = 'dot' + (i===0?' on':'');
+  d.onclick = () => show(i);
+  dotsEl.appendChild(d);
+});
+
+function show(n) {
+  slides[cur].classList.remove('on');
+  dotsEl.children[cur].classList.remove('on');
+  cur = n;
+  slides[cur].classList.add('on');
+  dotsEl.children[cur].classList.add('on');
+  counter.textContent = (cur+1) + ' / ' + slides.length;
+  document.getElementById('prev').disabled = cur === 0;
+  document.getElementById('next').disabled = cur === slides.length - 1;
+}
+
+function go(d) { if(cur+d >= 0 && cur+d < slides.length) show(cur+d); }
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+  if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+});
+</script>
+</body>
+</html>
